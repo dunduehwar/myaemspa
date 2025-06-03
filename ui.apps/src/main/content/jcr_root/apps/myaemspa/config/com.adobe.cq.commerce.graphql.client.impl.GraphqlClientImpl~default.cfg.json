@@ -1,0 +1,7 @@
+{
+  "url": "${env:COMMERCE_ENDPOINT:https://commerce-stg.adobe.io/graphql}",
+  "httpMethod": "POST",
+  "connectionTimeout": 5000,
+  "socketTimeout": 5000,
+  "identifier": "default"
+}
