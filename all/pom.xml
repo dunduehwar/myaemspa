@@ -89,6 +89,13 @@
                         </embedded>
                         <!-- CIF embedded package temporarily removed for build to succeed -->
                         <!-- This embedded package will be added back after manually installing the CIF package in AEM -->
+                        <!-- 
+                        <embedded>
+                            <groupId>com.adobe.commerce.cif</groupId>
+                            <artifactId>core-cif-components-all</artifactId>
+                            <target>/apps/myaemspa-vendor-packages/application/install</target>
+                        </embedded>
+                        -->
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -190,11 +197,14 @@
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->
     <dependencies>
+        <!-- CIF dependency temporarily commented out for build to succeed -->
+        <!-- 
         <dependency>
             <groupId>com.adobe.commerce.cif</groupId>
             <artifactId>core-cif-components-all</artifactId>
             <type>zip</type>
         </dependency>
+        -->
         <dependency>
             <groupId>com.myaemspa</groupId>
             <artifactId>myaemspa.ui.apps</artifactId>

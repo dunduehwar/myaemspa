@@ -5,7 +5,9 @@ import apolloClient from './utils/graphql-client';
 import './App.css';
 
 // Import commerce components
-import './components/commerce/import-commerce-components';
+import { ProductList, ShoppingCart } from '@adobe/aem-cif-react-components';
+import HeroBanner from './components/commerce/HeroBanner/HeroBanner';
+import FeatureCards from './components/commerce/FeatureCards/FeatureCards';
 
 // This component is the application entry point
 class App extends Page {
@@ -20,28 +22,48 @@ class App extends Page {
     return (
       <ApolloProvider client={apolloClient}>
         <div className="App">
-          {/* Add fallback content when no components are available */}
-          {this.childComponents || 
-            <div className="debug-info">
-              <h1>My AEM SPA</h1>
-              <p>No child components found. This could be because:</p>
-              <ul>
-                <li>The AEM page model is not being loaded correctly</li>
-                <li>No components have been added to the page in AEM</li>
-                <li>Component mapping is not configured correctly</li>
-              </ul>
-              <div className="demo-content">
-                <h2>Demo Content</h2>
-                <p>This is placeholder content for development.</p>
-                {/* Placeholder for product list - will be properly rendered when in AEM */}
-                <div className="placeholder-product-list">
-                  <h3>Product List Placeholder</h3>
-                  <p>This is a placeholder for the Product List component.</p>
-                  <p>In AEM, this would be replaced with actual CIF components.</p>
-                </div>
-              </div>
-            </div>
-          }
+          {/* Main e-commerce layout */}
+          <HeroBanner 
+            title="Welcome to Our Store"
+            subtitle="Discover amazing products at great prices"
+            backgroundImage="/assets/hero-background.jpg"
+            ctaText="Shop Now"
+            ctaLink="/products"
+          />
+
+          {/* Feature Cards Section */}
+          <FeatureCards 
+            features={[
+              {
+                icon: "/assets/fast-shipping.svg",
+                title: "Fast Shipping",
+                description: "Get your orders delivered quickly and safely."
+              },
+              {
+                icon: "/assets/secure-payment.svg",
+                title: "Secure Payments",
+                description: "Safe and secure payment processing."
+              },
+              {
+                icon: "/assets/support.svg",
+                title: "24/7 Support",
+                description: "Customer support available around the clock."
+              }
+            ]}
+          />
+
+          {/* Product List Section */}
+          <ProductList 
+            cqPath="/content/myaemspa/en/products"
+            cqIsContainer={true}
+          />
+
+          {/* Shopping Cart */}
+          <ShoppingCart 
+            cqPath="/content/myaemspa/en/cart"
+          />
+
+          {this.childComponents}
           {this.childPages}
         </div>
       </ApolloProvider>
